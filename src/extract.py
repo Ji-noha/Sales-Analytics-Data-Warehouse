@@ -1,20 +1,17 @@
 import pandas as pd
 from pathlib import Path
+import time
 
-"""
-    Reads all CSV files from the data folder.
-
-    Returns:
-        dict: Dictionary where
-            key = dataset name
-            value = pandas DataFrame
-"""
 def extract():
-    data_folder= Path("data")
-    csv_files= data_folder.glob("*.csv")
+    data_folder= Path("data/raw")
+    csv_files= list(data_folder.glob("*.csv"))
+    total_files=len(csv_files)
+
     datasets={}
     errors={}
-    
+
+    start_time=time.time()
+
     for csv_file in csv_files:
         try: 
             csv_name=csv_file.stem
@@ -28,14 +25,31 @@ def extract():
                 "message":str(e)
             }
             
+    end_time=time.time()
+    execution_time=end_time - start_time
 
-    return datasets , errors
+    loaded_files=len(datasets)
+    failed_files=len(errors)
+    total_rows=0
+
+    for df in datasets.values():
+        total_rows+=len(df)
+
+    statistics={
+        "total_files":total_files,
+        "loaded_files": loaded_files,
+        "failed_files": failed_files,
+        "total_rows":total_rows,
+        "execution_time": execution_time
+    }
+
+    return datasets , errors , statistics
 
 
-
-
-
-
+datasets, errors, statistics=extract()
+print(statistics)
+print(errors)
+print(datasets.keys())
 
 
 
