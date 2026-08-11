@@ -27,3 +27,4 @@ df["product_height_cm"]=df["product_height_cm"].fillna(df["product_height_cm"].m
 df["product_width_cm"]=df["product_width_cm"].fillna(df["product_width_cm"].median())
 
 df["product_category_name"] = df["product_category_name"].fillna("Unknown")
+

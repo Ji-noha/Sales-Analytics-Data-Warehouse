@@ -82,3 +82,47 @@ psql -h localhost -U postgres -d ecommerce -f sql/02_create_raw_tables.sql
 18- TO INSPECT ONE TABLE DO : 
 \d raw.orders
 (you will see columns of this table)
+
+
+#Dictionary → len(dictionary)
+List → len(list)
+
+"""
+    Reads all CSV files from the data folder.
+
+    Returns:
+        dict: Dictionary where
+            key = dataset name
+            value = pandas DataFrame
+"""
+Python lets us compress that exact loop into:
+
+missing_required = [
+    column for column in required
+    if column not in df.columns
+]
+
+The pattern is:
+
+[result for item in collection if condition]
+
+
+df[column] = pd.to_datetime(
+    df[column],
+    errors="coerce"
+)
+
+means:
+
+"Try to convert every value into a date. If something cannot be converted, don't crash; replace it with NaT."
+
+For example:
+
+"2018-01-10 10:30:00"  →  2018-01-10 10:30:00 ✅
+"2018-02-15 14:20:00"  →  2018-02-15 14:20:00 ✅
+NaN                    →  NaT                  ✅
+"hello"                →  NaT                  ⚠️
+
+NaT means Not a Time.
+
+It's the datetime equivalent of NaN.
