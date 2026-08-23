@@ -66,18 +66,18 @@ datasets["olist_orders_dataset"]["order_month"]=datasets["olist_orders_dataset"]
 
 datasets["olist_order_items_dataset"]["total_sales"] = (datasets["olist_order_items_dataset"]["price"]+datasets["olist_order_items_dataset"]["freight_value"])
 
-
-#print(validation_errors)   
-#print(datasets["olist_orders_dataset"].dtypes)
 """
+print(validation_errors)   
+print(datasets["olist_orders_dataset"].dtypes)
+
 print(datasets["olist_orders_dataset"][["order_purchase_timestamp","order_delivered_customer_date","delivery_days","order_year","order_month"]].head())
 print(
     datasets["olist_order_items_dataset"][
         ["price", "freight_value", "total_sales"]
     ].head()
 )
-"""
-#print(datasets["olist_orders_dataset"]["delivery_days"].describe())
+
+print(datasets["olist_orders_dataset"]["delivery_days"].describe())
 
 print(datasets["olist_orders_dataset"][
     ["delivery_days", "order_year", "order_month"]
@@ -86,3 +86,4 @@ print(datasets["olist_orders_dataset"][
 print(datasets["olist_order_items_dataset"][
     ["price", "freight_value", "total_sales"]
 ].dtypes)
+"""

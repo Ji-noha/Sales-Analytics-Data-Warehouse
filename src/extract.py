@@ -47,9 +47,10 @@ def extract():
 
 
 datasets, errors, statistics=extract()
-print(statistics)
-print(errors)
-print(datasets.keys())
+
+#print(statistics)
+#print(errors)
+#print(datasets.keys())
 
 
 
