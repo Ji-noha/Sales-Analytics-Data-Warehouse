@@ -3,10 +3,15 @@ from pathlib import Path
 import time
 
 def extract():
-    data_folder= Path("data/raw")
+    #data_folder= Path("data/raw")
+    data_folder = Path("/opt/airflow/data/raw")
+
     csv_files= list(data_folder.glob("*.csv"))
     total_files=len(csv_files)
-
+    print("CURRENT DIRECTORY:", Path.cwd())
+    print("DATA FOLDER:", data_folder.resolve())
+    print("CSV FILES:", list(data_folder.glob("*.csv"))) 
+    
     datasets={}
     errors={}
 
@@ -42,7 +47,8 @@ def extract():
         "total_rows":total_rows,
         "execution_time": execution_time
     }
-
+    print("DATASETS EXTRACTED:")
+    print(datasets.keys())
     return datasets , errors , statistics
 
 

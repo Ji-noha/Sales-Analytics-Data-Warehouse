@@ -6,12 +6,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# local(python/windows) use 5433 as port  and localhost , when using airflow+docker use 5432 and postgres
 user=os.getenv("POSTGRES_USER")
 password=os.getenv("POSTGRES_PASSWORD")
 database=os.getenv("POSTGRES_DB")
-port=5433
+port=5432
 
-connection_url= f"postgresql://{user}:{password}@localhost:{port}/{database}"
+connection_url= f"postgresql://{user}:{password}@postgres:{port}/{database}"
 
 engine=create_engine(connection_url)
 

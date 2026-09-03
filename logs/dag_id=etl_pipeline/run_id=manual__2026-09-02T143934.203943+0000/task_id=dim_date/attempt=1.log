@@ -1,0 +1,135 @@
+[2026-09-02T14:39:49.459+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-09-02T14:39:49.528+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.dim_date manual__2026-09-02T14:39:34.203943+00:00 [queued]>
+[2026-09-02T14:39:49.552+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.dim_date manual__2026-09-02T14:39:34.203943+00:00 [queued]>
+[2026-09-02T14:39:49.555+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2026-09-02T14:39:49.591+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): dim_date> on 2026-09-02 14:39:34.203943+00:00
+[2026-09-02T14:39:49.620+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=382) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-09-02T14:39:49.622+0000] {standard_task_runner.py:72} INFO - Started process 388 to run task
+[2026-09-02T14:39:49.618+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'dim_date', 'manual__2026-09-02T14:39:34.203943+00:00', '--job-id', '95', '--raw', '--subdir', 'DAGS_FOLDER/sales_etl_dag.py', '--cfg-path', '/tmp/tmpbz_n94br']
+[2026-09-02T14:39:49.629+0000] {standard_task_runner.py:105} INFO - Job 95: Subtask dim_date
+[2026-09-02T14:39:49.833+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.dim_date manual__2026-09-02T14:39:34.203943+00:00 [running]> on host a914322f514a
+[2026-09-02T14:39:50.121+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='dim_date' AIRFLOW_CTX_EXECUTION_DATE='2026-09-02T14:39:34.203943+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-02T14:39:34.203943+00:00'
+[2026-09-02T14:39:50.126+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-09-02T14:39:50.167+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-09-02T14:39:50.172+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'PYTHONPATH=/opt/airflow/src python -m warehouse.dim_date']
+[2026-09-02T14:39:50.199+0000] {subprocess.py:99} INFO - Output:
+[2026-09-02T14:39:55.503+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-09-02T14:39:55.515+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+[2026-09-02T14:39:55.519+0000] {subprocess.py:106} INFO -     self.dialect.do_execute(
+[2026-09-02T14:39:55.522+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+[2026-09-02T14:39:55.525+0000] {subprocess.py:106} INFO -     cursor.execute(statement, parameters)
+[2026-09-02T14:39:55.531+0000] {subprocess.py:106} INFO - psycopg2.errors.UndefinedTable: relation "stg_orders" does not exist
+[2026-09-02T14:39:55.549+0000] {subprocess.py:106} INFO - LINE 5:             FROM stg_orders
+[2026-09-02T14:39:55.559+0000] {subprocess.py:106} INFO -                          ^
+[2026-09-02T14:39:55.561+0000] {subprocess.py:106} INFO - 
+[2026-09-02T14:39:55.562+0000] {subprocess.py:106} INFO - 
+[2026-09-02T14:39:55.568+0000] {subprocess.py:106} INFO - The above exception was the direct cause of the following exception:
+[2026-09-02T14:39:55.578+0000] {subprocess.py:106} INFO - 
+[2026-09-02T14:39:55.580+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-09-02T14:39:55.587+0000] {subprocess.py:106} INFO -   File "<frozen runpy>", line 198, in _run_module_as_main
+[2026-09-02T14:39:55.599+0000] {subprocess.py:106} INFO -   File "<frozen runpy>", line 88, in _run_code
+[2026-09-02T14:39:55.609+0000] {subprocess.py:106} INFO -   File "/opt/airflow/src/warehouse/dim_date.py", line 19, in <module>
+[2026-09-02T14:39:55.624+0000] {subprocess.py:106} INFO -     result=connection.execute(
+[2026-09-02T14:39:55.633+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^
+[2026-09-02T14:39:55.638+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+[2026-09-02T14:39:55.656+0000] {subprocess.py:106} INFO -     return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+[2026-09-02T14:39:55.670+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-09-02T14:39:55.671+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+[2026-09-02T14:39:55.689+0000] {subprocess.py:106} INFO -     return connection._execute_clauseelement(
+[2026-09-02T14:39:55.691+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-09-02T14:39:55.705+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+[2026-09-02T14:39:55.706+0000] {subprocess.py:106} INFO -     ret = self._execute_context(
+[2026-09-02T14:39:55.711+0000] {subprocess.py:106} INFO -           ^^^^^^^^^^^^^^^^^^^^^^
+[2026-09-02T14:39:55.726+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+[2026-09-02T14:39:55.738+0000] {subprocess.py:106} INFO -     self._handle_dbapi_exception(
+[2026-09-02T14:39:55.762+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+[2026-09-02T14:39:55.764+0000] {subprocess.py:106} INFO -     util.raise_(
+[2026-09-02T14:39:55.783+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2026-09-02T14:39:55.784+0000] {subprocess.py:106} INFO -     raise exception
+[2026-09-02T14:39:55.791+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+[2026-09-02T14:39:55.799+0000] {subprocess.py:106} INFO -     self.dialect.do_execute(
+[2026-09-02T14:39:55.809+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+[2026-09-02T14:39:55.825+0000] {subprocess.py:106} INFO -     cursor.execute(statement, parameters)
+[2026-09-02T14:39:55.837+0000] {subprocess.py:106} INFO - sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "stg_orders" does not exist
+[2026-09-02T14:39:55.842+0000] {subprocess.py:106} INFO - LINE 5:             FROM stg_orders
+[2026-09-02T14:39:55.844+0000] {subprocess.py:106} INFO -                          ^
+[2026-09-02T14:39:55.865+0000] {subprocess.py:106} INFO - 
+[2026-09-02T14:39:55.867+0000] {subprocess.py:106} INFO - [SQL:
+[2026-09-02T14:39:55.880+0000] {subprocess.py:106} INFO -             SELECT
+[2026-09-02T14:39:55.881+0000] {subprocess.py:106} INFO -                 MIN(order_purchase_timestamp)::DATE AS start_date,
+[2026-09-02T14:39:55.882+0000] {subprocess.py:106} INFO -                 MAX(order_purchase_timestamp)::DATE AS end_date
+[2026-09-02T14:39:55.886+0000] {subprocess.py:106} INFO -             FROM stg_orders
+[2026-09-02T14:39:55.887+0000] {subprocess.py:106} INFO -         ]
+[2026-09-02T14:39:55.890+0000] {subprocess.py:106} INFO - (Background on this error at: https://sqlalche.me/e/14/f405)
+[2026-09-02T14:39:56.162+0000] {subprocess.py:110} INFO - Command exited with return code 1
+[2026-09-02T14:39:56.222+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 276, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-09-02T14:39:56.243+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=etl_pipeline, task_id=dim_date, run_id=manual__2026-09-02T14:39:34.203943+00:00, execution_date=20260902T143934, start_date=20260902T143949, end_date=20260902T143956
+[2026-09-02T14:39:56.303+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-09-02T14:39:56.305+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 95 for task dim_date (Bash command failed. The command returned a non-zero exit code 1.; 388)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 276, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-09-02T14:39:56.354+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-09-02T14:39:56.442+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-02T14:39:56.456+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

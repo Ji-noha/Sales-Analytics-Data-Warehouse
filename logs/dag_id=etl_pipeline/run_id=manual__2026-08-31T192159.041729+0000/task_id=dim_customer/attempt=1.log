@@ -1,0 +1,218 @@
+[2026-08-31T19:22:06.282+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-08-31T19:22:06.302+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.dim_customer manual__2026-08-31T19:21:59.041729+00:00 [queued]>
+[2026-08-31T19:22:06.313+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.dim_customer manual__2026-08-31T19:21:59.041729+00:00 [queued]>
+[2026-08-31T19:22:06.315+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2026-08-31T19:22:06.333+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): dim_customer> on 2026-08-31 19:21:59.041729+00:00
+[2026-08-31T19:22:06.345+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'dim_customer', 'manual__2026-08-31T19:21:59.041729+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/sales_etl_dag.py', '--cfg-path', '/tmp/tmpif2p7uo7']
+[2026-08-31T19:22:06.349+0000] {standard_task_runner.py:105} INFO - Job 30: Subtask dim_customer
+[2026-08-31T19:22:06.350+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=758) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-31T19:22:06.355+0000] {standard_task_runner.py:72} INFO - Started process 762 to run task
+[2026-08-31T19:22:06.431+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.dim_customer manual__2026-08-31T19:21:59.041729+00:00 [running]> on host f252e9273545
+[2026-08-31T19:22:06.522+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='dim_customer' AIRFLOW_CTX_EXECUTION_DATE='2026-08-31T19:21:59.041729+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-08-31T19:21:59.041729+00:00'
+[2026-08-31T19:22:06.523+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-08-31T19:22:06.546+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-08-31T19:22:06.547+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'PYTHONPATH=/opt/airflow/src python -m warehouse.dim_customer']
+[2026-08-31T19:22:06.558+0000] {subprocess.py:99} INFO - Output:
+[2026-08-31T19:22:08.010+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-08-31T19:22:08.010+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+[2026-08-31T19:22:08.011+0000] {subprocess.py:106} INFO -     return fn()
+[2026-08-31T19:22:08.011+0000] {subprocess.py:106} INFO -            ^^^^
+[2026-08-31T19:22:08.012+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+[2026-08-31T19:22:08.013+0000] {subprocess.py:106} INFO -     return _ConnectionFairy._checkout(self)
+[2026-08-31T19:22:08.013+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.013+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+[2026-08-31T19:22:08.014+0000] {subprocess.py:106} INFO -     fairy = _ConnectionRecord.checkout(pool)
+[2026-08-31T19:22:08.014+0000] {subprocess.py:106} INFO -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.015+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+[2026-08-31T19:22:08.015+0000] {subprocess.py:106} INFO -     rec = pool._do_get()
+[2026-08-31T19:22:08.015+0000] {subprocess.py:106} INFO -           ^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.016+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+[2026-08-31T19:22:08.016+0000] {subprocess.py:106} INFO -     with util.safe_reraise():
+[2026-08-31T19:22:08.017+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.017+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+[2026-08-31T19:22:08.017+0000] {subprocess.py:106} INFO -     compat.raise_(
+[2026-08-31T19:22:08.018+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2026-08-31T19:22:08.018+0000] {subprocess.py:106} INFO -     raise exception
+[2026-08-31T19:22:08.019+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+[2026-08-31T19:22:08.019+0000] {subprocess.py:106} INFO -     return self._create_connection()
+[2026-08-31T19:22:08.019+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.020+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+[2026-08-31T19:22:08.020+0000] {subprocess.py:106} INFO -     return _ConnectionRecord(self)
+[2026-08-31T19:22:08.020+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.021+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+[2026-08-31T19:22:08.021+0000] {subprocess.py:106} INFO -     self.__connect()
+[2026-08-31T19:22:08.022+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+[2026-08-31T19:22:08.022+0000] {subprocess.py:106} INFO -     with util.safe_reraise():
+[2026-08-31T19:22:08.022+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.023+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+[2026-08-31T19:22:08.023+0000] {subprocess.py:106} INFO -     compat.raise_(
+[2026-08-31T19:22:08.024+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2026-08-31T19:22:08.025+0000] {subprocess.py:106} INFO -     raise exception
+[2026-08-31T19:22:08.026+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+[2026-08-31T19:22:08.026+0000] {subprocess.py:106} INFO -     self.dbapi_connection = connection = pool._invoke_creator(self)
+[2026-08-31T19:22:08.027+0000] {subprocess.py:106} INFO -                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.027+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+[2026-08-31T19:22:08.028+0000] {subprocess.py:106} INFO -     return dialect.connect(*cargs, **cparams)
+[2026-08-31T19:22:08.028+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.029+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+[2026-08-31T19:22:08.029+0000] {subprocess.py:106} INFO -     return self.dbapi.connect(*cargs, **cparams)
+[2026-08-31T19:22:08.030+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.030+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+[2026-08-31T19:22:08.031+0000] {subprocess.py:106} INFO -     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+[2026-08-31T19:22:08.031+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.032+0000] {subprocess.py:106} INFO - psycopg2.OperationalError: connection to server at "postgres" (172.18.0.2), port 5432 failed: FATAL:  *** authentication failed for user "None"
+[2026-08-31T19:22:08.033+0000] {subprocess.py:106} INFO - 
+[2026-08-31T19:22:08.034+0000] {subprocess.py:106} INFO - 
+[2026-08-31T19:22:08.034+0000] {subprocess.py:106} INFO - The above exception was the direct cause of the following exception:
+[2026-08-31T19:22:08.035+0000] {subprocess.py:106} INFO - 
+[2026-08-31T19:22:08.035+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-08-31T19:22:08.036+0000] {subprocess.py:106} INFO -   File "<frozen runpy>", line 198, in _run_module_as_main
+[2026-08-31T19:22:08.036+0000] {subprocess.py:106} INFO -   File "<frozen runpy>", line 88, in _run_code
+[2026-08-31T19:22:08.037+0000] {subprocess.py:106} INFO -   File "/opt/airflow/src/warehouse/dim_customer.py", line 21, in <module>
+[2026-08-31T19:22:08.037+0000] {subprocess.py:106} INFO -     customers=pd.read_sql(
+[2026-08-31T19:22:08.037+0000] {subprocess.py:106} INFO -               ^^^^^^^^^^^^
+[2026-08-31T19:22:08.038+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/sql.py", line 652, in read_sql
+[2026-08-31T19:22:08.038+0000] {subprocess.py:106} INFO -     with pandasSQL_builder(con) as pandas_sql:
+[2026-08-31T19:22:08.039+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.039+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/sql.py", line 851, in pandasSQL_builder
+[2026-08-31T19:22:08.039+0000] {subprocess.py:106} INFO -     return SQLDatabase(con, schema, need_transaction)
+[2026-08-31T19:22:08.040+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.040+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/sql.py", line 1576, in __init__
+[2026-08-31T19:22:08.040+0000] {subprocess.py:106} INFO -     con = self.exit_stack.enter_context(con.connect())
+[2026-08-31T19:22:08.041+0000] {subprocess.py:106} INFO -                                         ^^^^^^^^^^^^^
+[2026-08-31T19:22:08.041+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+[2026-08-31T19:22:08.042+0000] {subprocess.py:106} INFO -     return self._connection_cls(self, close_with_result=close_with_result)
+[2026-08-31T19:22:08.043+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.043+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+[2026-08-31T19:22:08.044+0000] {subprocess.py:106} INFO -     else engine.raw_connection()
+[2026-08-31T19:22:08.044+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.044+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+[2026-08-31T19:22:08.045+0000] {subprocess.py:106} INFO -     return self._wrap_pool_connect(self.pool.connect, _connection)
+[2026-08-31T19:22:08.045+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.046+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+[2026-08-31T19:22:08.046+0000] {subprocess.py:106} INFO -     Connection._handle_dbapi_exception_noconnection(
+[2026-08-31T19:22:08.046+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+[2026-08-31T19:22:08.047+0000] {subprocess.py:106} INFO -     util.raise_(
+[2026-08-31T19:22:08.047+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2026-08-31T19:22:08.048+0000] {subprocess.py:106} INFO -     raise exception
+[2026-08-31T19:22:08.048+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+[2026-08-31T19:22:08.048+0000] {subprocess.py:106} INFO -     return fn()
+[2026-08-31T19:22:08.049+0000] {subprocess.py:106} INFO -            ^^^^
+[2026-08-31T19:22:08.049+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+[2026-08-31T19:22:08.049+0000] {subprocess.py:106} INFO -     return _ConnectionFairy._checkout(self)
+[2026-08-31T19:22:08.050+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.050+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+[2026-08-31T19:22:08.051+0000] {subprocess.py:106} INFO -     fairy = _ConnectionRecord.checkout(pool)
+[2026-08-31T19:22:08.051+0000] {subprocess.py:106} INFO -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.052+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+[2026-08-31T19:22:08.052+0000] {subprocess.py:106} INFO -     rec = pool._do_get()
+[2026-08-31T19:22:08.052+0000] {subprocess.py:106} INFO -           ^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.054+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+[2026-08-31T19:22:08.054+0000] {subprocess.py:106} INFO -     with util.safe_reraise():
+[2026-08-31T19:22:08.055+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.056+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+[2026-08-31T19:22:08.056+0000] {subprocess.py:106} INFO -     compat.raise_(
+[2026-08-31T19:22:08.057+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2026-08-31T19:22:08.057+0000] {subprocess.py:106} INFO -     raise exception
+[2026-08-31T19:22:08.057+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+[2026-08-31T19:22:08.058+0000] {subprocess.py:106} INFO -     return self._create_connection()
+[2026-08-31T19:22:08.059+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.059+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+[2026-08-31T19:22:08.060+0000] {subprocess.py:106} INFO -     return _ConnectionRecord(self)
+[2026-08-31T19:22:08.061+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.061+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+[2026-08-31T19:22:08.061+0000] {subprocess.py:106} INFO -     self.__connect()
+[2026-08-31T19:22:08.062+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+[2026-08-31T19:22:08.062+0000] {subprocess.py:106} INFO -     with util.safe_reraise():
+[2026-08-31T19:22:08.063+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.063+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+[2026-08-31T19:22:08.064+0000] {subprocess.py:106} INFO -     compat.raise_(
+[2026-08-31T19:22:08.064+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+[2026-08-31T19:22:08.065+0000] {subprocess.py:106} INFO -     raise exception
+[2026-08-31T19:22:08.065+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+[2026-08-31T19:22:08.066+0000] {subprocess.py:106} INFO -     self.dbapi_connection = connection = pool._invoke_creator(self)
+[2026-08-31T19:22:08.066+0000] {subprocess.py:106} INFO -                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.067+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+[2026-08-31T19:22:08.067+0000] {subprocess.py:106} INFO -     return dialect.connect(*cargs, **cparams)
+[2026-08-31T19:22:08.067+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.068+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+[2026-08-31T19:22:08.068+0000] {subprocess.py:106} INFO -     return self.dbapi.connect(*cargs, **cparams)
+[2026-08-31T19:22:08.069+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.069+0000] {subprocess.py:106} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+[2026-08-31T19:22:08.069+0000] {subprocess.py:106} INFO -     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+[2026-08-31T19:22:08.070+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-08-31T19:22:08.070+0000] {subprocess.py:106} INFO - sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "postgres" (172.18.0.2), port 5432 failed: FATAL:  *** authentication failed for user "None"
+[2026-08-31T19:22:08.071+0000] {subprocess.py:106} INFO - 
+[2026-08-31T19:22:08.071+0000] {subprocess.py:106} INFO - (Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2026-08-31T19:22:08.206+0000] {subprocess.py:110} INFO - Command exited with return code 1
+[2026-08-31T19:22:08.237+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 276, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-08-31T19:22:08.244+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=etl_pipeline, task_id=dim_customer, run_id=manual__2026-08-31T19:21:59.041729+00:00, execution_date=20260831T192159, start_date=20260831T192206, end_date=20260831T192208
+[2026-08-31T19:22:08.266+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-08-31T19:22:08.268+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 30 for task dim_customer (Bash command failed. The command returned a non-zero exit code 1.; 762)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 422, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 276, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-08-31T19:22:08.300+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-08-31T19:22:08.331+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-31T19:22:08.337+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

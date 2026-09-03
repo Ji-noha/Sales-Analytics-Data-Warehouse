@@ -1,3 +1,199 @@
+# AIRFLOW DAG SUCCESS
+1. Problem #1 — Relative path inside Airflow
+
+Your original extract.py had:
+
+data_folder = Path("data/raw")
+
+When you ran it locally, your current directory was your project root, so:
+
+project/
+├── data/
+│   └── raw/
+└── src/
+
+worked perfectly.
+
+But Airflow's BashOperator was executing the command from a temporary directory:
+
+CURRENT DIRECTORY: /tmp/airflowtmpbi6f0ig1
+
+Therefore Python interpreted:
+
+Path("data/raw")
+
+as:
+
+/tmp/airflowtmpbi6f0ig1/data/raw
+
+which didn't exist.
+
+That's why you got:
+
+CSV FILES: []
+dict_keys([])
+Solution
+
+Use the absolute path inside the container:
+
+data_folder = Path("/opt/airflow/data/raw")
+
+And because your Docker volume already exposed:
+
+/opt/airflow/data/raw
+
+the files became visible.
+
+Lesson to remember
+
+Never assume the current working directory when code runs inside Airflow/Docker.
+
+For pipelines, prefer:
+
+Path("/opt/airflow/data/raw")
+
+or construct paths from a known project/container root.
+
+2. Problem #2 — Dates were strings
+
+After fixing extraction, you got a different error:
+
+TypeError: unsupported operand type(s) for -: 'str' and 'str'
+
+This line caused it:
+
+order_delivered_customer_date - order_purchase_timestamp
+
+Your CSV contains dates as text, for example conceptually:
+
+2017-10-02 10:00:00
+
+When pandas.read_csv() reads them, they are initially:
+
+object
+
+not datetime.
+
+Your diagnostic confirmed:
+
+order_delivered_customer_date    object
+order_purchase_timestamp         object
+
+So Python was effectively trying:
+
+"2017-10-02 10:00:00" - "2017-09-29 08:00:00"
+
+which obviously doesn't work.
+
+Solution
+
+Convert them explicitly:
+
+orders["order_delivered_customer_date"] = pd.to_datetime(
+    orders["order_delivered_customer_date"],
+    errors="coerce"
+)
+
+orders["order_purchase_timestamp"] = pd.to_datetime(
+    orders["order_purchase_timestamp"],
+    errors="coerce"
+)
+
+Then:
+
+orders["delivery_days"] = (
+    orders["order_delivered_customer_date"]
+    - orders["order_purchase_timestamp"]
+).dt.days
+
+Now Pandas is doing:
+
+datetime - datetime → timedelta → days
+
+✅
+
+The bigger lesson for your ETL
+
+You just encountered two very important ETL environment problems:
+
+Problem	Why local worked	Why Docker/Airflow failed	Solution
+data/raw not found	Local working directory was project root	Airflow ran from /tmp/...	Use container path /opt/airflow/data/raw
+Dates couldn't be subtracted	Possibly different execution/context	CSV dates loaded as strings	Explicit pd.to_datetime()
+Empty datasets reported success	[] is valid Python	No CSVs → empty dict	Make extraction fail if no files
+One improvement I'd make now
+
+Your extract.py previously did this:
+
+csv_files = list(data_folder.glob("*.csv"))
+
+and if it found nothing, it simply continued:
+
+loaded_files = 0
+failed_files = 0
+return ...
+
+That is dangerous in production because Airflow thinks the task succeeded even though your pipeline extracted nothing.
+
+Add:
+
+if not csv_files:
+    raise FileNotFoundError(
+        f"No CSV files found in {data_folder}"
+    )
+
+Then a future path/volume problem immediately gives you a FAILED extraction task, instead of letting the pipeline continue and eventually producing:
+
+stg_customers does not exist
+
+That is a much better industrial ETL behavior.
+
+The debugging pattern to remember
+
+When something works locally but fails in Airflow/Docker, ask in this order:
+
+1. Where am I?
+
+print(Path.cwd())
+
+2. What files can I actually see?
+
+print(list(data_folder.glob("*.csv")))
+
+3. What data types did I actually receive?
+
+print(df.dtypes)
+
+4. What exactly does the traceback point to?
+
+Don't immediately change Docker, PostgreSQL, Airflow, etc. The traceback usually tells you which layer is actually broken.
+
+And in this case, we went:
+
+Docker volume ✅
+       ↓
+Path ❌ → fixed
+       ↓
+CSV extraction ✅
+       ↓
+Datetime type ❌ → fixed
+       ↓
+Transform ✅
+       ↓
+Load ✅
+       ↓
+Dimensions ✅
+       ↓
+Fact table ✅
+       ↓
+Entire DAG ✅
+
+That's exactly the kind of debugging workflow you want to develop as a Data Engineer.
+
+# when changing core exeucter to localexecuter instead of squential executer , dag appears in airflow UI
+
+# transform in dag failed( datasets ?? BECAUSE LIGNE DE CODE DES DATASETS NEED TO BE INSIDE TEH LOOP )
+
+# dim_customer in dag task , warehouse need to have __init__.py even if its empty so it can be considered as a package not a module in -m warehouse.dim_customer
 # POSTGRESQL
 ===
 docker-compose.yml 
@@ -656,3 +852,69 @@ date_data
 add date attributes
     ↓
 dim_date
+
+#
+2. Pourquoi LEFT JOIN ?
+
+Rappelle-toi ce que nous voulons construire :
+
+Chaque ligne de stg_order_items doit devenir une ligne de fact_sales.
+
+Supposons qu'on ait :
+
+order_id     product_id
+A            X
+B            Y
+C            Z
+
+et que le produit Y ne soit pas trouvé dans dim_product.
+
+Avec :
+
+INNER JOIN dim_product
+
+la ligne B disparaîtrait complètement :
+
+A → X ✅
+B → Y ❌ disparaît
+C → Z ✅
+
+Avec :
+
+LEFT JOIN dim_product
+
+on garde :
+
+A → X → product_key 10
+B → Y → NULL
+C → Z → product_key 25
+
+C'est préférable dans un pipeline analytique parce qu'on veut détecter les problèmes de correspondance plutôt que supprimer silencieusement des ventes.
+
+##
+SELECT ...
+FROM ...
+JOIN ...
+ON ...
+GROUP BY ...
+ORDER BY ...
+LIMIT ...
+
+Not JOIN ON table — it's:
+
+JOIN table AS alias
+ON condition
+
+#
+SELECT
+    dimension,
+    AGGREGATE(measure)
+FROM fact_table AS f
+JOIN dimension_table AS d
+    ON foreign_key = dimension_key
+GROUP BY dimension
+ORDER BY measure DESC;
+
+#
+KPI query → fetchone() because it returns one row
+Revenue by year/month/top products/etc. → fetchall() because they return multiple rows

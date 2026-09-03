@@ -1,5 +1,5 @@
 import pandas as pd
-from .extract import datasets
+from extract import datasets
 import datetime
 
 validation_errors={}
@@ -55,16 +55,35 @@ for name, df in datasets.items():
         "dtypes":dtypes
     }
 
-datasets["olist_order_reviews_dataset"]["review_comment_title"] = datasets["olist_order_reviews_dataset"]["review_comment_title"].fillna("No comment")
-datasets["olist_order_reviews_dataset"]["review_comment_message"] = datasets["olist_order_reviews_dataset"]["review_comment_message"].fillna("No comment")
-datasets["olist_products_dataset"]["product_category_name"]  =datasets["olist_products_dataset"]["product_category_name"] .fillna("Unknown")
+    datasets["olist_order_reviews_dataset"]["review_comment_title"] = datasets["olist_order_reviews_dataset"]["review_comment_title"].fillna("No comment")
+    datasets["olist_order_reviews_dataset"]["review_comment_message"] = datasets["olist_order_reviews_dataset"]["review_comment_message"].fillna("No comment")
+    datasets["olist_products_dataset"]["product_category_name"]  =datasets["olist_products_dataset"]["product_category_name"] .fillna("Unknown")
+    print(datasets["olist_orders_dataset"][[
+    "order_delivered_customer_date",
+    "order_purchase_timestamp"
+    ]].dtypes)
+    #datasets["olist_orders_dataset"]["delivery_days"] = (datasets["olist_orders_dataset"]["order_delivered_customer_date"] - datasets["olist_orders_dataset"]["order_purchase_timestamp"]).dt.days
+    orders = datasets["olist_orders_dataset"]
 
-datasets["olist_orders_dataset"]["delivery_days"] = (datasets["olist_orders_dataset"]["order_delivered_customer_date"] - datasets["olist_orders_dataset"]["order_purchase_timestamp"]).dt.days
+    orders["order_delivered_customer_date"] = pd.to_datetime(
+        orders["order_delivered_customer_date"],
+        errors="coerce"
+    )
 
-datasets["olist_orders_dataset"]["order_year"]=datasets["olist_orders_dataset"]["order_purchase_timestamp"].dt.year
-datasets["olist_orders_dataset"]["order_month"]=datasets["olist_orders_dataset"]["order_purchase_timestamp"].dt.month
+    orders["order_purchase_timestamp"] = pd.to_datetime(
+        orders["order_purchase_timestamp"],
+        errors="coerce"
+    )
 
-datasets["olist_order_items_dataset"]["total_sales"] = (datasets["olist_order_items_dataset"]["price"]+datasets["olist_order_items_dataset"]["freight_value"])
+    orders["delivery_days"] = (
+    orders["order_delivered_customer_date"]
+    - orders["order_purchase_timestamp"]
+    ).dt.days
+
+    datasets["olist_orders_dataset"]["order_year"]=datasets["olist_orders_dataset"]["order_purchase_timestamp"].dt.year
+    datasets["olist_orders_dataset"]["order_month"]=datasets["olist_orders_dataset"]["order_purchase_timestamp"].dt.month
+
+    datasets["olist_order_items_dataset"]["total_sales"] = (datasets["olist_order_items_dataset"]["price"]+datasets["olist_order_items_dataset"]["freight_value"])
 
 """
 print(validation_errors)   

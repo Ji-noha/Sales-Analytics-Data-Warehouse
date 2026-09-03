@@ -1,0 +1,21 @@
+[2026-08-31T14:28:42.952+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-08-31T14:28:42.973+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.extract_csv manual__2026-08-31T14:28:42.665970+00:00 [queued]>
+[2026-08-31T14:28:42.983+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.extract_csv manual__2026-08-31T14:28:42.665970+00:00 [queued]>
+[2026-08-31T14:28:42.985+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2026-08-31T14:28:43.006+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): extract_csv> on 2026-08-31 14:28:42.665970+00:00
+[2026-08-31T14:28:43.017+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'extract_csv', 'manual__2026-08-31T14:28:42.665970+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/sales_etl_dag.py', '--cfg-path', '/tmp/tmppt473d55']
+[2026-08-31T14:28:43.023+0000] {standard_task_runner.py:105} INFO - Job 7: Subtask extract_csv
+[2026-08-31T14:28:43.027+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=290) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-08-31T14:28:43.029+0000] {standard_task_runner.py:72} INFO - Started process 291 to run task
+[2026-08-31T14:28:43.141+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.extract_csv manual__2026-08-31T14:28:42.665970+00:00 [running]> on host ded07224e676
+[2026-08-31T14:28:43.230+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='extract_csv' AIRFLOW_CTX_EXECUTION_DATE='2026-08-31T14:28:42.665970+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-08-31T14:28:42.665970+00:00'
+[2026-08-31T14:28:43.231+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-08-31T14:28:43.247+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-08-31T14:28:43.249+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'PYTHONPATH=/opt/airflow/src python -m extract']
+[2026-08-31T14:28:43.259+0000] {subprocess.py:99} INFO - Output:
+[2026-08-31T14:28:44.142+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-08-31T14:28:44.168+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-08-31T14:28:44.168+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=extract_csv, run_id=manual__2026-08-31T14:28:42.665970+00:00, execution_date=20260831T142842, start_date=20260831T142842, end_date=20260831T142844
+[2026-08-31T14:28:44.216+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-08-31T14:28:44.238+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-08-31T14:28:44.241+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

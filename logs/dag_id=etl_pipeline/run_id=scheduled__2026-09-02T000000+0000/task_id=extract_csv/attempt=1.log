@@ -1,0 +1,25 @@
+[2026-09-03T10:50:18.777+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-09-03T10:50:18.846+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.extract_csv scheduled__2026-09-02T00:00:00+00:00 [queued]>
+[2026-09-03T10:50:18.875+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.extract_csv scheduled__2026-09-02T00:00:00+00:00 [queued]>
+[2026-09-03T10:50:18.891+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2026-09-03T10:50:18.969+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): extract_csv> on 2026-09-02 00:00:00+00:00
+[2026-09-03T10:50:19.003+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=908) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-09-03T10:50:18.991+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'extract_csv', 'scheduled__2026-09-02T00:00:00+00:00', '--job-id', '129', '--raw', '--subdir', 'DAGS_FOLDER/sales_etl_dag.py', '--cfg-path', '/tmp/tmpxhj5cgaw']
+[2026-09-03T10:50:19.006+0000] {standard_task_runner.py:72} INFO - Started process 909 to run task
+[2026-09-03T10:50:19.009+0000] {standard_task_runner.py:105} INFO - Job 129: Subtask extract_csv
+[2026-09-03T10:50:19.160+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.extract_csv scheduled__2026-09-02T00:00:00+00:00 [running]> on host 62d0451776ea
+[2026-09-03T10:50:19.325+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='extract_csv' AIRFLOW_CTX_EXECUTION_DATE='2026-09-02T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-09-02T00:00:00+00:00'
+[2026-09-03T10:50:19.327+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-09-03T10:50:19.371+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-09-03T10:50:19.373+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'PYTHONPATH=/opt/airflow/src python -m extract']
+[2026-09-03T10:50:19.399+0000] {subprocess.py:99} INFO - Output:
+[2026-09-03T10:50:26.414+0000] {subprocess.py:106} INFO - CURRENT DIRECTORY: /tmp/airflowtmpm93if2tn
+[2026-09-03T10:50:26.416+0000] {subprocess.py:106} INFO - DATA FOLDER: /opt/airflow/data/raw
+[2026-09-03T10:50:26.417+0000] {subprocess.py:106} INFO - CSV FILES: [PosixPath('/opt/airflow/data/raw/olist_customers_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_geolocation_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_orders_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_order_items_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_order_payments_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_order_reviews_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_products_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_sellers_dataset.csv'), PosixPath('/opt/airflow/data/raw/product_category_name_translation.csv')]
+[2026-09-03T10:50:26.417+0000] {subprocess.py:106} INFO - DATASETS EXTRACTED:
+[2026-09-03T10:50:26.417+0000] {subprocess.py:106} INFO - dict_keys(['olist_customers_dataset', 'olist_geolocation_dataset', 'olist_orders_dataset', 'olist_order_items_dataset', 'olist_order_payments_dataset', 'olist_order_reviews_dataset', 'olist_products_dataset', 'olist_sellers_dataset', 'product_category_name_translation'])
+[2026-09-03T10:50:26.508+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-09-03T10:50:26.557+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-09-03T10:50:26.558+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=extract_csv, run_id=scheduled__2026-09-02T00:00:00+00:00, execution_date=20260902T000000, start_date=20260903T105018, end_date=20260903T105026
+[2026-09-03T10:50:26.632+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-09-03T10:50:26.645+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

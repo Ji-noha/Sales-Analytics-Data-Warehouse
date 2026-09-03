@@ -9,9 +9,9 @@ load_dotenv()
 user=os.getenv("POSTGRES_USER")
 password=os.getenv("POSTGRES_PASSWORD")
 database=os.getenv("POSTGRES_DB")
-port=5433
+port=5432
 
-connection_url= f"postgresql://{user}:{password}@localhost:{port}/{database}"
+connection_url= f"postgresql://{user}:{password}@postgres:{port}/{database}"
 
 engine=create_engine(connection_url)
 
