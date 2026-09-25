@@ -1,0 +1,62 @@
+[2026-09-23T16:45:20.706+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-09-23T16:45:20.758+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.load_data scheduled__2026-09-22T02:00:00+00:00 [queued]>
+[2026-09-23T16:45:20.805+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.load_data scheduled__2026-09-22T02:00:00+00:00 [queued]>
+[2026-09-23T16:45:20.809+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 3
+[2026-09-23T16:45:20.869+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): load_data> on 2026-09-22 02:00:00+00:00
+[2026-09-23T16:45:20.945+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'load_data', 'scheduled__2026-09-22T02:00:00+00:00', '--job-id', '152', '--raw', '--subdir', 'DAGS_FOLDER/sales_etl_dag.py', '--cfg-path', '/tmp/tmp9yupn08x']
+[2026-09-23T16:45:20.952+0000] {standard_task_runner.py:105} INFO - Job 152: Subtask load_data
+[2026-09-23T16:45:20.957+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=221) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-09-23T16:45:20.958+0000] {standard_task_runner.py:72} INFO - Started process 222 to run task
+[2026-09-23T16:45:21.057+0000] {task_command.py:467} INFO - Running <TaskInstance: etl_pipeline.load_data scheduled__2026-09-22T02:00:00+00:00 [running]> on host 62d0451776ea
+[2026-09-23T16:45:21.178+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='load_data' AIRFLOW_CTX_EXECUTION_DATE='2026-09-22T02:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-09-22T02:00:00+00:00'
+[2026-09-23T16:45:21.180+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-09-23T16:45:21.207+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-09-23T16:45:21.209+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'PYTHONPATH=/opt/airflow/src python -m load']
+[2026-09-23T16:45:21.228+0000] {subprocess.py:99} INFO - Output:
+[2026-09-23T16:46:15.776+0000] {subprocess.py:106} INFO - CURRENT DIRECTORY: /tmp/airflowtmpyk8_ybek
+[2026-09-23T16:46:15.777+0000] {subprocess.py:106} INFO - DATA FOLDER: /opt/airflow/data/raw
+[2026-09-23T16:46:15.777+0000] {subprocess.py:106} INFO - CSV FILES: [PosixPath('/opt/airflow/data/raw/olist_customers_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_geolocation_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_orders_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_order_items_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_order_payments_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_order_reviews_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_products_dataset.csv'), PosixPath('/opt/airflow/data/raw/olist_sellers_dataset.csv'), PosixPath('/opt/airflow/data/raw/product_category_name_translation.csv')]
+[2026-09-23T16:46:15.778+0000] {subprocess.py:106} INFO - DATASETS EXTRACTED:
+[2026-09-23T16:46:15.778+0000] {subprocess.py:106} INFO - dict_keys(['olist_customers_dataset', 'olist_geolocation_dataset', 'olist_orders_dataset', 'olist_order_items_dataset', 'olist_order_payments_dataset', 'olist_order_reviews_dataset', 'olist_products_dataset', 'olist_sellers_dataset', 'product_category_name_translation'])
+[2026-09-23T16:46:15.779+0000] {subprocess.py:106} INFO - order_delivered_customer_date    object
+[2026-09-23T16:46:15.779+0000] {subprocess.py:106} INFO - order_purchase_timestamp         object
+[2026-09-23T16:46:15.779+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.780+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.780+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.781+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.781+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.782+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.782+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.783+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.783+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.783+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.784+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.784+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.784+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.784+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.785+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.785+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.785+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.785+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.786+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.786+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.787+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.787+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.787+0000] {subprocess.py:106} INFO - order_delivered_customer_date    datetime64[ns]
+[2026-09-23T16:46:15.787+0000] {subprocess.py:106} INFO - order_purchase_timestamp         datetime64[ns]
+[2026-09-23T16:46:15.788+0000] {subprocess.py:106} INFO - dtype: object
+[2026-09-23T16:46:15.788+0000] {subprocess.py:106} INFO - Loading olist_customers_dataset → stg_customers, rows=99441
+[2026-09-23T16:46:15.788+0000] {subprocess.py:106} INFO - Loading olist_geolocation_dataset → stg_geolocation, rows=1000163
+[2026-09-23T16:46:15.789+0000] {subprocess.py:106} INFO - Loading olist_orders_dataset → stg_orders, rows=99441
+[2026-09-23T16:46:15.789+0000] {subprocess.py:106} INFO - Loading olist_order_items_dataset → stg_order_items, rows=112650
+[2026-09-23T16:46:15.789+0000] {subprocess.py:106} INFO - Loading olist_order_payments_dataset → stg_order_payments, rows=103886
+[2026-09-23T16:46:15.789+0000] {subprocess.py:106} INFO - Loading olist_order_reviews_dataset → stg_order_reviews, rows=99224
+[2026-09-23T16:46:15.790+0000] {subprocess.py:106} INFO - Loading olist_products_dataset → stg_products, rows=32951
+[2026-09-23T16:46:15.790+0000] {subprocess.py:106} INFO - Loading olist_sellers_dataset → stg_sellers, rows=3095
+[2026-09-23T16:46:15.790+0000] {subprocess.py:106} INFO - Loading product_category_name_translation → stg_product_category_name_translation, rows=71
+[2026-09-23T16:46:15.938+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-09-23T16:46:15.968+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-09-23T16:46:15.971+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=load_data, run_id=scheduled__2026-09-22T02:00:00+00:00, execution_date=20260922T020000, start_date=20260923T164520, end_date=20260923T164615
+[2026-09-23T16:46:16.001+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-09-23T16:46:16.025+0000] {taskinstance.py:3895} INFO - 4 downstream tasks scheduled from follow-on schedule check
+[2026-09-23T16:46:16.030+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

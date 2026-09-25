@@ -1,3 +1,41 @@
+# kafka:
+Kafka is inside Docker, but my Python producer is running on my PC. Therefore Kafka must advertise an address that my PC can reach: localhost:9092.
+
+KAFKA_LISTENERS
+        ↓
+"Where do I accept connections?"
+        ↓
+0.0.0.0:9092
+
+
+KAFKA_ADVERTISED_LISTENERS
+        ↓
+"What address should I tell clients to use?"
+        ↓
+localhost:9092
+
+
+
+listener = network endpoint where Kafka accepts a type of connection
+
+listeners
+    ↓
+Where Kafka LISTENS
+
+advertised.listeners
+    ↓
+What address Kafka ADVERTISES to clients
+
+Your PC
+   │
+   │ localhost:9092
+   ↓
+Docker Kafka
+   │
+   └── listens on 0.0.0.0:9092
+
+CONTROLLER_QUORUM_VOTERS?::
+A Kafka KRaft cluster needs to know which nodes participate in controller management.  
 # AIRFLOW DAG SUCCESS
 1. Problem #1 — Relative path inside Airflow
 
@@ -188,6 +226,77 @@ Fact table ✅
 Entire DAG ✅
 
 That's exactly the kind of debugging workflow you want to develop as a Data Engineer.
+# kafka
+Partition = unit of storage + ordering
+Consumer = reads/ processes data
+Consumer group = distributes partitions among consumers
+Different groups = can independently read the same data
+# ==
+🔑 Remember this:
+
+One partition = maximum one active consumer per consumer group.
+
+Therefore:
+
+3 partitions → maximum 3 active consumers
+
+even if you have:
+
+10 consumers
+
+Only 3 can actively consume partitions at that moment.
+==
+🔑 Memorize just this:
+
+Listener = where Kafka accepts connections.
+Advertised listener = the address Kafka tells clients to use.
+
+And both producer and consumer use the advertised address.
+=🧠 The easiest analogy
+
+Imagine a shop.
+
+Listener:
+
+🚪 "My shop has a door at this location."
+
+Advertised listener:
+
+📍 "My address is 123 Main Street. Come here."
+
+They're related, but not the same job.
+==
+KAFKA_LISTENERS
+→ 0.0.0.0:9092
+→ "accept connections on my interfaces"
+
+KAFKA_ADVERTISED_LISTENERS
+→ localhost:9092
+→ "tell external clients to use this address"
+🧠 One sentence to lock it in
+
+localhost=127.0.0.1
+127.0.0.1 = only myself; 0.0.0.0 = listen on all interfaces.
+==
+json.dumps() → Python object → JSON string
+json.dump()  → Python object → file
+==
+🧠 The easiest way to remember it
+
+Think of a partition as a book.
+
+Same group:
+You have 3 people and 3 books. You divide the books between yourselves. Two people don't need to read the same book.
+
+Different groups:
+A Database team and an Analytics team both need the same book. Of course, both teams can read it independently.
+
+So:
+
+Same consumer group → partitions are shared among consumers.
+Different consumer groups → each group can independently consume the same partitions.
+
+And this is actually one of Kafka's biggest strengths.
 
 # when changing core exeucter to localexecuter instead of squential executer , dag appears in airflow UI
 

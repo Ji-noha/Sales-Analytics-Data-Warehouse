@@ -1,11 +1,18 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime
+from datetime import timedelta
+
+default_args={
+        "retries":2,
+        "retry_delay":timedelta(minutes=5),
+}
 
 with DAG (
         dag_id="etl_pipeline",
         start_date=datetime(2026,8,31),
-        schedule="@daily",
+        schedule="0 2 * * *",
+        default_args=default_args,
         catchup=False,
 ) as dag:
 
