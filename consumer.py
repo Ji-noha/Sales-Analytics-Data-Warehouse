@@ -16,7 +16,7 @@ print("Consumer1", flush=True)
 consumer = KafkaConsumer(
     "orders",
     bootstrap_servers="kafka:9092",
-    group_id="debug_consumer",
+    group_id="streaming_orders_v1",
     auto_offset_reset="earliest",
     value_deserializer=lambda v: json.loads(v.decode("utf-8"))
 )
@@ -29,40 +29,33 @@ for msg in consumer:
     print("partition:", msg.partition, flush=True)
     print("offset:", msg.offset, flush=True)
 
-
-#cursor.execute("SELECT 1")
-#result = cursor.fetchone()
-# print(result)
-    print("INSERTING INTO POSTGRES", flush=True)
-
     cursor.execute(
         """
-        INSERT INTO staging_orders (order_id, customer_id, price)
-        VALUES (%s, %s, %s)
+        INSERT INTO staging_orders (
+            order_id,
+            order_item_id,
+            product_id,
+            seller_id,
+            customer_id,
+            shipping_limit_date,
+            price,
+            freight_value,
+            order_purchase_timestamp
+        )
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """,
-        (msg.value["order_id"],msg.value["customer_id"],msg.value["price"])
+        (
+            msg.value["order_id"],
+            msg.value["order_item_id"],
+            msg.value["product_id"],
+            msg.value["seller_id"],
+            msg.value["customer_id"],
+            msg.value["shipping_limit_date"],
+            msg.value["price"],
+            msg.value["freight_value"],
+            msg.value["order_purchase_timestamp"]
+        )
     )
 
-    print("INSERT COMMITTED", flush=True)
     connection.commit()
 
-"""from kafka import KafkaConsumer 
-import json
-import psycopg2
-
-consumer=KafkaConsumer(
-    "orders",
-    bootstrap_servers="kafka:9092",
-    group_id="new_docker",
-    auto_offset_reset="earliest"
-)
-
-for msg in consumer:
-    message=json.loads(msg.value.decode("utf-8"))
-    print(message)
-    print("Consumer 1")
-    print(msg.partition)
-    print(msg.offset)
-
-#connection=f"postgresql+psycopg2://postgres:password@postgres:5432/ecommerce"
-"""

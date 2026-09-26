@@ -147,6 +147,7 @@ services:
         working_dir: /app
         volumes:
             - ./producer.py:/app/producer.py
+            - ./data:/app/data
         command: python producer.py
     consumer:
         build:
