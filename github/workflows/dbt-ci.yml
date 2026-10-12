@@ -1,0 +1,13 @@
+name: dbt-ci
+
+on:
+  push:
+
+jobs:
+  dbt-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Confirm workflow run
+        run: echo "Workflow run confirmed."
