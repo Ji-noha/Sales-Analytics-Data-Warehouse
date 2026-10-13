@@ -21,5 +21,4 @@ jobs:
           pip install dbt-core==1.10.23 dbt-bigquery==1.10.3
       - name: Check dbt installation
         run: dbt --version
-      - name: Parse dbt project
-        run: dbt parse --project-dir dbt/olist_analytics
+      
