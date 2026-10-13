@@ -21,4 +21,17 @@ jobs:
           pip install dbt-core==1.10.23 dbt-bigquery==1.10.3
       - name: Check dbt installation
         run: dbt --version
-      
+      - name: Validate dbt project
+        run: |
+          mkdir -p ~/.dbt
+          echo "olist_analytics:" > ~/.dbt/profiles.yml
+          echo "  target: dev" >> ~/.dbt/profiles.yml
+          echo "  outputs:" >> ~/.dbt/profiles.yml
+          echo "    dev:" >> ~/.dbt/profiles.yml
+          echo "      type: bigquery" >> ~/.dbt/profiles.yml
+          echo "      method: oauth" >> ~/.dbt/profiles.yml
+          echo "      project: southern-shade-469107-i6" >> ~/.dbt/profiles.yml
+          echo "      dataset: dbt_olist" >> ~/.dbt/profiles.yml
+          echo "      location: US" >> ~/.dbt/profiles.yml
+          echo "      threads: 1" >> ~/.dbt/profiles.yml
+          dbt parse --project-dir dbt/olist_analytics
