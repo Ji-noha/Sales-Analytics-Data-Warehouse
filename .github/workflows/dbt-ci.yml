@@ -2,6 +2,7 @@ name: dbt-ci
 
 on:
   push:
+    branches: [main]
 
 jobs:
   dbt-check:
