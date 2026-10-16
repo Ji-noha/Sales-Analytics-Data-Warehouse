@@ -3,6 +3,8 @@ name: dbt-ci
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   dbt-check:
@@ -36,3 +38,6 @@ jobs:
           echo "      location: US" >> ~/.dbt/profiles.yml
           echo "      threads: 1" >> ~/.dbt/profiles.yml
           dbt parse --project-dir dbt/olist_analytics
+      - name: Run dbt tests
+        run: dbt test --project-dir dbt/olist_analytics
+        

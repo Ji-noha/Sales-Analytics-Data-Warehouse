@@ -27,8 +27,8 @@ services:
 
         depends_on:
             - postgres
-
-
+        volumes:
+            - ./secrets/metabase-bigquery.json:/run/secrets/metabase-bigquery.json:ro
     airflow-init:
         build: 
             context: .

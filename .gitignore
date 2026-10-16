@@ -1,7 +1,23 @@
-.venv/
-logs/
+# md files
 learn.md
 script.py
-.env
 resume.md
 commands.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Generated files
+*.log
+.ipynb_checkpoints/
+
+# Local datasets
+data/raw/
