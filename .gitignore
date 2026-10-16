@@ -3,6 +3,7 @@ learn.md
 script.py
 resume.md
 commands.md
+<<<<<<< HEAD
 
 # Python
 __pycache__/
@@ -21,3 +22,6 @@ venv/
 
 # Local datasets
 data/raw/
+=======
+secrets/
+>>>>>>> d82dba79cc514126f4a02af0fecd25fce56a943e
